@@ -1,20 +1,27 @@
-import pandas as pd
+import os
 from supermercado import Supermercado
+diretorio_raiz = os.getcwd()  # Obtém o diretório de trabalho atual
 
-# Substitua 'seuarquivo.xlsx' pelo nome do seu arquivo Excel
-arquivo_excel = '/home/lg/dev/python/cotacao/consolidated_quote/modelo_de_cotacao.xlsx'
+# Lista todos os arquivos no diretório raiz
+arquivos_no_diretorio = os.listdir(diretorio_raiz)
 
-# Use o método read_excel para ler o arquivo XLS
-# O parâmetro sheet_name=None importará todas as abas
-dfs = pd.read_excel(arquivo_excel, sheet_name=None)
+# Filtra os arquivos com a extensão .txt
+arquivos_txt = [arquivo for arquivo in arquivos_no_diretorio if arquivo.endswith(".txt")]
 
-# A variável "dfs" conterá um dicionário onde as chaves são os nomes das abas
-# e os valores são DataFrames do pandas correspondentes às abas.
+# Imprime a lista de arquivos .txt
+for arquivo in arquivos_txt:
+    # Abra o arquivo em modo de leitura ('r')
+    with open(arquivo, 'r') as arquivo:
+    # Leia o conteúdo do arquivo
+        conteudo = arquivo.read()
+        linhas = conteudo.split('\n')  # Divide o conteúdo em linhas
+        linhas = [linha for linha in linhas if linha.strip() != ""]
+        ultimas_linhas = linhas[-2:]
+        produtos = linhas[:-1]
 
-# Você pode acessar os DataFrames individuais por meio das chaves do dicionário
-for aba, df in dfs.items():
-    #print(f'Conteúdo da aba {aba}:')
-    #print(df)
-    supermercado=Supermercado(df=df)
-    supermercado.listar_produtos()
+    #print(conteudo)
+    print('ultimas linhas: ', ultimas_linhas)
+
+    supermercado=Supermercado(ultimas_linhas, produtos)
+    supermercado.Total()
 

@@ -1,43 +1,63 @@
-marcador_de_planilha='Planilha'
-import pandas as pd
-
 from produto import Produto
+import locale
+
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')  # Cambia 'en_US.UTF-8' a tu configuración local
 
 class Supermercado:
-  def __init__(self, df):
-    self.df=df
-    ultimas_duas_linhas = df.tail(2)
-    self.endereco= df.tail(1)
-    self.titulo = df.iloc[-2]
-    novo_df = pd.concat([ultimas_duas_linhas])
-    df_string = novo_df.to_string(index=False)
-#"Não possui cotação para o mercado selecionado. Total: R$9,87 ASSAÍ ATACADISTA - ATUBA
-#                                                 BR 4761, 1801 - Atuba - Curitiba/PR"
-    parte1, parte2 = df_string.split("R$", 1)
-    parte2=parte2.split(" ",1)
-    self.titulo, self.endereco=parte2[1].split('\n')
-    self.endereco=self.endereco.lstrip()
-    
-    #print(self.titulo)
-    #print(self.endereco)
+  marcador_de_ausencia='Não possui cotação'
+  def __init__(self, array_nome_endereco, array_produtos):
+    self.array_produtos=array_produtos
+    self.array_nome_endereco=array_nome_endereco
+    self.nome=''
+    self.endereco=''
+    self.lista_de_produtos = []
+    for parametro in array_nome_endereco:
+      try:
+        parte1, parte2 = parametro.rsplit("R$", 1)
+        parte1, parte2 = parte2.split(" ", 1)
+        self.nome=parte2
+      except ValueError:
+        self.endereco=parametro
 
+    for linha in range (0,len(self.array_produtos),2):
+      produto=self.array_produtos[linha]
+      preco=self.array_produtos[linha+1]
+
+      titulo, unidade = produto.rsplit("-")
+      quantidade_padrao, unidade=unidade.split(" ",1)
+      unidade=unidade.strip()
+      titulo=titulo.strip()
+
+      if self.marcador_de_ausencia not in preco:
+        quantidade, preco = preco.rsplit("R$", 1)
+        palavraQuantidade, quantidade=quantidade.rsplit(':', 1)
+        quantidade=quantidade.strip()
+        quantidade=int(quantidade)
+        preco = float(preco.replace(',', '.'))
+
+        produto = Produto(preco=preco, quantidade=quantidade, titulo=titulo,unidade=unidade )
+        self.lista_de_produtos.append(produto)
+        
+  def Total(self):
+    total=0
+    for item in self.lista_de_produtos:     
+      total=item.calcular_valor_total()+total
+    return locale.currency(total, grouping=True)
+  
   def listar_produtos(self):
-    for i in range(1, len(self.df), 2):
-      #result=self.df.loc[i].split(" ")
-      print("produto 1:", self.df.loc[i].to_string(index=True))
-      print("produto 2:", self.df.loc[i+1].to_string(index=True))
-
-  def imprimir_produtos(self):
-    print(self.df)
-
-  def mostrar_titulo(self):
-    for linha in self.linhas:
-      print(linha)
-
-  def mostrar_endereco(self):
-    print(self.endereco)
+    lista=[]
+    for item in self.lista_de_produtos:
+      titulo=item.titulo
+      lista.append(titulo)
+    return lista
 
 
-  #if __name__ == "__main__":
+
+  if __name__ == "__main__":
+    import subprocess
+    # Executar "arquivo2.py" como um processo independente
+    subprocess.call(["python", "main.py"])
+
+
     
 
