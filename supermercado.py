@@ -34,10 +34,13 @@ class Supermercado:
         quantidade=quantidade.strip()
         quantidade=int(quantidade)
         preco = float(preco.replace(',', '.'))
+      else:
+        preco=0.0
+      
+      produto = Produto(preco=preco, quantidade=quantidade, titulo=titulo,unidade=unidade )
+      self.lista_de_produtos.append(produto)
+      
 
-        produto = Produto(preco=preco, quantidade=quantidade, titulo=titulo,unidade=unidade )
-        self.lista_de_produtos.append(produto)
-        
   def Total(self):
     total=0
     for item in self.lista_de_produtos:     
@@ -51,8 +54,27 @@ class Supermercado:
       lista.append(titulo)
     return lista
 
+  def listar_precos(self):
+    lista=[]
+    for item in self.lista_de_produtos:
+      preco=locale.currency(item.preco, grouping=True)
+      lista.append(preco)
+    return lista
 
-
+  def listar_quantidades(self):
+    lista=[]
+    for item in self.lista_de_produtos:
+      quantidade=item.quantidade
+      lista.append(quantidade)
+    return lista
+  
+  def listar_unidades(self):
+    lista=[]
+    for item in self.lista_de_produtos:
+      unidade=item.unidade
+      lista.append(unidade)
+    return lista
+  
   if __name__ == "__main__":
     import subprocess
     # Executar "arquivo2.py" como um processo independente
