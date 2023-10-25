@@ -47,10 +47,8 @@ for l in range (0, len(supermercados),1):
     linha.append(supermercados[l].Total())
 relatorio.append(linha)
 
-print(relatorio)
-
 # Nome do arquivo de texto que você deseja criar
-nome_arquivo = 'exemplo.csv'
+nome_arquivo = 'resultado.csv'
 
 # Abrir o arquivo de texto em modo de escrita
 with open(nome_arquivo, 'w') as arquivo:
@@ -58,5 +56,5 @@ with open(nome_arquivo, 'w') as arquivo:
         linha = ';'.join(map(str, array))  # Converter os elementos do array em uma única string separada por vírgulas
         arquivo.write(f'{linha}\n')  # Escrever a linha no arquivo e adicionar uma quebra de linha
 
-print(f'O arquivo de texto "{nome_arquivo}" foi criado com cada array em uma linha, separando os elementos por vírgulas.')
+print(f'O arquivo de texto "{nome_arquivo}", separando por ponto e vírgula.')
 
