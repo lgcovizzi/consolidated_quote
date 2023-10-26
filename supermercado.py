@@ -8,43 +8,64 @@ class Supermercado:
   def __init__(self, array_nome_endereco, array_produtos):
     self.array_produtos=array_produtos
     self.array_nome_endereco=array_nome_endereco
-    self.nome=''
-    self.endereco=''
+    self.nome=array_nome_endereco[0]
+    self.endereco=array_nome_endereco[1]
     self.lista_de_produtos = []
-    for parametro in array_nome_endereco:
-      try:
-        parte1, parte2 = parametro.rsplit("R$", 1)
-        parte1, parte2 = parte2.split(" ", 1)
-        self.nome=parte2
-      except ValueError:
-        self.endereco=parametro
 
-    for linha in range (0,len(self.array_produtos),2):
-      produto=self.array_produtos[linha]
-      preco=self.array_produtos[linha+1]
+    for linha in range (0,len(self.array_produtos), 1):
 
-      titulo, unidade = produto.rsplit("-")
-      quantidade_padrao, unidade=unidade.split(" ",1)
-      unidade=unidade.strip()
-      titulo=titulo.strip()
+      preco=0.0
+      quantidade=0
+      titulo=''
+      unidade="UNI"
+      adicionar=False
 
-      if self.marcador_de_ausencia not in preco:
-        quantidade, preco = preco.rsplit("R$", 1)
-        palavraQuantidade, quantidade=quantidade.rsplit(':', 1)
-        quantidade=quantidade.strip()
-        quantidade=int(quantidade)
-        preco = float(preco.replace(',', '.'))
-      else:
-        preco=0.0
       
-      produto = Produto(preco=preco, quantidade=quantidade, titulo=titulo,unidade=unidade )
-      self.lista_de_produtos.append(produto)
+      #tentar o primeira linha
+      try:
+        _produto_unidade_padrao=self.array_produtos[linha]    
+        titulo, quantidade_padrao = _produto_unidade_padrao.rsplit("-",1)
+        unidade=quantidade_padrao.strip()
+        titulo=titulo.strip()
+      except:
+        print('An exception occurred')
+      
+      # tentar segunda linha
+      try:
+        _quantidade=self.array_produtos[linha + 1]                
+        quantidade=int(_quantidade.rsplit(":",1)[1])
+        
+      except:
+        print('An exception occurred')
+
+      #tentar terceira linha
+      try:
+        _preco=self.array_produtos[linha + 2]
+        _preco=_preco.rsplit(" ",1)[1]
+        preco=float(_preco.replace(',', '.'))
+        adicionar=True
+      except:
+        print('An exception occurred')
+
+      if adicionar:
+        produto=Produto(titulo=titulo, quantidade=quantidade, preco=preco, unidade=unidade)
+        self.lista_de_produtos.append(produto)
+      
+      try:
+        if self.marcador_de_ausencia in self.array_produtos[linha + 1]  :
+          produto=Produto(titulo=titulo, quantidade=quantidade, preco=preco, unidade=unidade)
+          self.lista_de_produtos.append(produto)
+      except:
+        print('An exception occurred')
+
+      
+      
       
 
   def Total(self):
     total=0
     for item in self.lista_de_produtos:     
-      total=item.calcular_valor_total()+total
+     total=item.preco + total
     return locale.currency(total, grouping=True)
   
   def listar_produtos(self):

@@ -7,6 +7,9 @@ relatorio_cabecalho_2=['', '','','']
 # Lista todos os arquivos no diretório raiz
 arquivos_no_diretorio = os.listdir(diretorio_raiz)
 
+if os.path.exists("resultado.csv"):
+    os.remove("resultado.csv")
+
 # Filtra os arquivos com a extensão .txt
 arquivos_txt = [arquivo for arquivo in arquivos_no_diretorio if arquivo.endswith(".txt")]
 relatorio=[]
@@ -19,7 +22,8 @@ for arquivo in arquivos_txt:
         linhas = conteudo.split('\n')  # Divide o conteúdo em linhas
         linhas = [linha for linha in linhas if linha.strip() != ""]
         ultimas_linhas = linhas[-2:]
-        produtos = linhas[:-1]   
+        produtos = linhas[:-3]  
+
 
     supermercado=Supermercado(ultimas_linhas, produtos)
     supermercados.append(supermercado)
