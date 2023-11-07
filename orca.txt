@@ -1,59 +1,22 @@
 
-OVOS TIPO GRANDE BRANCO -( + ) BARATO -12 Unidades
-Quantidade:10
-R$ 69,80
-CEBOLA -1 KG
-Quantidade:1
-R$ 7,49
-CENOURA -1 KG
-Quantidade:1
-R$ 2,97
-CHEIRO VERDE -1 MC/CX
-Quantidade:2
-R$ 5,98
-LIMÃO TAITI -1 KG
-Quantidade:1
-R$ 6,99
-BANANA CATURRA -1 KG
-Quantidade:1
-R$ 4,39
-TOMATE LONGA VIDA -1 KG
-Quantidade:1
-R$ 4,87
-BATATA MONALISA -1 KG
+ABACATE -1 KG
 Quantidade:1
 R$ 3,99
-QUEIJO PARMESÃO RALADO -( + ) BARATO -50 GR
-Quantidade:26
-R$ 127,14
-QUEIJO MUSSARELA Fatiado -FRIMESA -200 GR
+ABACAXI PEROLA -1 UN
 Quantidade:1
-R$ 10,59
-CREME DE LEITE -FRIMESA -200 GR
-Quantidade:3
-R$ 9,45
-ÓLEO DE SOJA -COAMO -900 ML
-Quantidade:7
-R$ 34,65
-FARINHA DE TRIGO -( + ) BARATO -1 KG
-Quantidade:4
-R$ 14,60
-CEBOLA ROXA -1 KG
-Não possui cotação para o mercado selecionado.
-MANTEIGA EXTRA COM SAL -VIDATIVA -200 GR
-Não possui cotação para o mercado selecionado.
-IOGURTE INTEGRAL BICAMADAS -TIROL -130 GR
-Não possui cotação para o mercado selecionado.
-BACON SUÍNO -FRIMESA -1 KG
-Não possui cotação para o mercado selecionado.
-LEITE INTEGRAL 3% DE GORDURA -SANTA CLARA -1 LITRO
-Não possui cotação para o mercado selecionado.
-ARROZ PARBOILIZADO -ARNO -1 KG
-Não possui cotação para o mercado selecionado.
-POLVILHO DOCE -RD ALIMENTOS -500 GR
-Não possui cotação para o mercado selecionado.
-MACARRÃO INSTANTÂNEO -( + ) BARATO -85 GR
-Não possui cotação para o mercado selecionado.
-Total: R$302,91
-CONDOR - FRANCISCO DEROSSO
-R. Francisco Derosso, 3300 - Curitiba/PR 
+R$ 6,99
+ABOBORA KABOTIA -1 KG
+Quantidade:1
+R$ 3,29
+ABOBORA MENINA -1 KG
+Quantidade:1
+R$ 2,99
+ABOBORA MORANGA -1 KG
+Quantidade:1
+R$ 2,59
+ABOBRINHA VERDE -1 KG
+Quantidade:1
+R$ 3,99
+Total: R$23,84
+ATACADÃO - XAXIM
+Rua Francisco Derosso, 2973 - Xaxim - Curitiba/PR 

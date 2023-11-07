@@ -1,84 +1,86 @@
 from produto import Produto
+
 import locale
 
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')  # Cambia 'en_US.UTF-8' a tu configuración local
 
 class Supermercado:
   marcador_de_ausencia='Não possui cotação'
-  def __init__(self, array_nome_endereco, array_produtos):
-    self.array_produtos=array_produtos
-    self.array_nome_endereco=array_nome_endereco
-    self.nome=array_nome_endereco[0]
-    self.endereco=array_nome_endereco[1]
-    self.lista_de_produtos = []
+  def __init__(self, titulo, produtos):
+    self.titulo=titulo[0].rsplit("-",1)[0]
+    self.local=titulo[1]
+    self.produtos=produtos
+    self.lista_de_produtos=[]
 
-    for linha in range (0,len(self.array_produtos), 1):
-
+    for linha in range (0,len(self.produtos), 1):
+    
       preco=0.0
       quantidade=0
       titulo=''
       unidade="UNI"
       adicionar=False
 
-      
       #tentar o primeira linha
       try:
-        _produto_unidade_padrao=self.array_produtos[linha]    
-        titulo, quantidade_padrao = _produto_unidade_padrao.rsplit("-",1)
-        unidade=quantidade_padrao.strip()
-        titulo=titulo.strip()
-      except:
-        print('An exception occurred')
-      
-      # tentar segunda linha
-      try:
-        _quantidade=self.array_produtos[linha + 1]                
-        quantidade=int(_quantidade.rsplit(":",1)[1])
+        _produto_unidade_padrao=self.produtos[linha]
+        titulo, unidade = _produto_unidade_padrao.rsplit("-",1)   
         
       except:
-        print('An exception occurred')
+        pass
 
-      #tentar terceira linha
+      # tentar segunda linha
       try:
-        _preco=self.array_produtos[linha + 2]
+        _quantidade=self.produtos[linha + 1]                
+        quantidade=int(_quantidade.split(":",1)[1])
+
+      except:
+        pass
+
+        #tentar terceira linha
+      try:
+        _preco=self.produtos[linha + 2]
         _preco=_preco.rsplit(" ",1)[1]
         preco=float(_preco.replace(',', '.'))
         adicionar=True
       except:
-        print('An exception occurred')
+        pass
+
+      try:
+        if self.marcador_de_ausencia in self.produtos[linha + 1]  :
+          adicionar=True
+      except:
+        pass
 
       if adicionar:
-        produto=Produto(titulo=titulo, quantidade=quantidade, preco=preco, unidade=unidade)
+        produto=Produto(titulo=titulo, unidade=unidade, quantidade=quantidade, preco_unitatio=preco)
         self.lista_de_produtos.append(produto)
       
-      try:
-        if self.marcador_de_ausencia in self.array_produtos[linha + 1]  :
-          produto=Produto(titulo=titulo, quantidade=quantidade, preco=preco, unidade=unidade)
-          self.lista_de_produtos.append(produto)
-      except:
-        print('An exception occurred')
+      self.lista_de_produtos= sorted(self.lista_de_produtos, key=lambda x: x.titulo)
+      
+    
 
-      
-      
-      
+  
+  def contar_itens(self):
+    print(len(self.lista_de_produtos))
+  
 
-  def Total(self):
+  def somar_precos(self):
     total=0
     for item in self.lista_de_produtos:     
-     total=item.preco + total
+     total=item.preco_total + total
     return locale.currency(total, grouping=True)
   
-  def listar_produtos(self):
+  def lista_de_itens(self):
     lista=[]
     for item in self.lista_de_produtos:
       titulo=item.titulo
       lista.append(titulo)
     return lista
 
-  def listar_precos(self):
+  def lista_de_preco(self):
     lista=[]
     for item in self.lista_de_produtos:
-      preco=locale.currency(item.preco, grouping=True)
+      preco=locale.currency(item.preco_total, grouping=True)
       lista.append(preco)
     return lista
 
@@ -95,12 +97,16 @@ class Supermercado:
       unidade=item.unidade
       lista.append(unidade)
     return lista
+
+  def nome(self):
+    return self.titulo
+
+  def endereco(self):
+    return self.local
+
   
   if __name__ == "__main__":
     import subprocess
     # Executar "arquivo2.py" como um processo independente
     subprocess.call(["python", "main.py"])
-
-
-    
 

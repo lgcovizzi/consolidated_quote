@@ -1,7 +1,9 @@
-item;descrição;quantidade;unidade;ASSAÍ ATACADISTA - ATUBA;ASSAÍ ATACADISTA - ATUBA;ASSAÍ ATACADISTA - ATUBA
-;;;;BR 4761, 1801 - Atuba - Curitiba/PR;BR 4761, 1801 - Atuba - Curitiba/PR;BR 4761, 1801 - Atuba - Curitiba/PR
-1;ABACATE;1;KG;R$ 2,99;R$ 2,99;R$ 2,99
-2;ABOBRINHA VERDE;1;KG;R$ 1,89;R$ 1,89;R$ 1,89
-3;ABACAXI PEROLA;1;UN;R$ 4,99;R$ 4,99;R$ 4,99
-4;JABUTICABA;1;KG;R$ 0,00;R$ 0,00;R$ 0,00
-;;;Total;R$ 9,87;R$ 9,87;R$ 9,87
+item;descricao;quantidade;unidade;ATACADÃO ;ATACADÃO ;CONDOR JOÃO BETTEGA 
+;;;;Rua Francisco Derosso, 2973 - Xaxim - Curitiba/PR ;Avenida Winston Churchill - Capão Raso - Curitiba/PR ;Rua dos Bem-te-vis - Novo Mundo - Curitiba/PR 
+1;ABACATE ;1 KG;1;R$ 3,99;R$ 3,99;R$ 6,99
+2;ABACAXI PEROLA ;1 UN;1;R$ 6,99;R$ 8,29;R$ 7,59
+3;ABOBORA KABOTIA ;1 KG;1;R$ 3,29;R$ 3,29;R$ 3,05
+4;ABOBORA MENINA ;1 KG;1;R$ 2,99;R$ 2,99;R$ 3,69
+5;ABOBORA MORANGA ;1 KG;1;R$ 2,59;R$ 2,59;R$ 2,05
+6;ABOBRINHA VERDE ;1 KG;1;R$ 3,99;R$ 3,99;R$ 4,39
+;;;Total;R$ 23,84;R$ 25,14;R$ 27,76

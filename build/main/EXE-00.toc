@@ -94,7 +94,7 @@
  [],
  False,
  False,
- 1698247264,
+ 1699372738,
  [('run',
    '/home/lg/dev/python/cotacao/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run',
    'EXECUTABLE')],
